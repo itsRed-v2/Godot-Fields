@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5c10lnak68xt"]
+
+[ext_resource type="Script" path="res://ElectricField.gd" id="1_qqqx3"]
+[ext_resource type="PackedScene" uid="uid://c7rngejh3ce3i" path="res://spheric_body.tscn" id="2_bvbtk"]
+
+[node name="Main" type="Node2D"]
+
+[node name="ElectricField" type="Node2D" parent="."]
+script = ExtResource("1_qqqx3")
+
+[node name="ArrowContainer" type="Node2D" parent="ElectricField"]
+
+[node name="Entities" type="Node2D" parent="ElectricField"]
+
+[node name="SphericBody" parent="ElectricField/Entities" instance=ExtResource("2_bvbtk")]
+position = Vector2(132, 106)
+charge = -1
+
+[node name="SphericBody2" parent="ElectricField/Entities" instance=ExtResource("2_bvbtk")]
+position = Vector2(1035, 551)
+charge = 2
