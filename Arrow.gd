@@ -12,6 +12,9 @@ func _process(_delta):
 	queue_redraw();
 
 func _draw():
+	if not Global.draw_electrostatic_field:
+		return
+
 	var length = vector.length() * draw_scale;
 	
 	var effective_arrow_arms_length = arrow_arms_length;

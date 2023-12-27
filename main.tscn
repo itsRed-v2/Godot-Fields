@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5c10lnak68xt"]
+[gd_scene load_steps=5 format=3 uid="uid://b5c10lnak68xt"]
 
+[ext_resource type="PackedScene" uid="uid://bmnsl83705tel" path="res://background.tscn" id="1_ahk64"]
 [ext_resource type="Script" path="res://ElectricField.gd" id="1_qqqx3"]
 [ext_resource type="PackedScene" uid="uid://c7rngejh3ce3i" path="res://spheric_body.tscn" id="2_bvbtk"]
+[ext_resource type="PackedScene" uid="uid://jpy61hi47b2" path="res://hud.tscn" id="3_25slw"]
 
 [node name="Main" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_ahk64")]
 
 [node name="ElectricField" type="Node2D" parent="."]
 script = ExtResource("1_qqqx3")
@@ -13,9 +17,11 @@ script = ExtResource("1_qqqx3")
 [node name="Entities" type="Node2D" parent="ElectricField"]
 
 [node name="SphericBody" parent="ElectricField/Entities" instance=ExtResource("2_bvbtk")]
-position = Vector2(132, 106)
+position = Vector2(228, 177)
 charge = -1
 
 [node name="SphericBody2" parent="ElectricField/Entities" instance=ExtResource("2_bvbtk")]
-position = Vector2(1035, 551)
+position = Vector2(1031, 554)
 charge = 2
+
+[node name="HUD" parent="." instance=ExtResource("3_25slw")]

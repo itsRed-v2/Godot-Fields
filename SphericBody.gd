@@ -29,5 +29,11 @@ func _draw():
 	var color = Color(0.254902, 0.411765, 0.882353);
 	if isHovered: color = color.darkened(0.1);
 	draw_circle(Vector2.ZERO, 20, color);
-	
-	
+
+func update_info():
+	var data_label = get_node("Data");
+	data_label.text = "";
+	if Global.show_charge:
+		data_label.text += "Charge: " + str(charge) + " C\n";
+	if Global.show_mass:
+		data_label.text += "Mass: " + str(mass) + " kg\n";
