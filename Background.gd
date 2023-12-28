@@ -1,4 +1,3 @@
-@tool
 extends Node2D
 
 @export var bg = Color(0.1, 0.1, 0.1);

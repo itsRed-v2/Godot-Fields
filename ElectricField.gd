@@ -27,8 +27,8 @@ func calculate_field(point: Vector2) -> Vector2:
 	
 	for e in entities.get_children():
 		var diff: Vector2 = e.position - point;
-		var distance = diff.length() / 100; # 1m = 100px
-		var field_value = e.charge / (distance * distance);
+		var distance_squared = diff.length_squared() / (100 * 100); # 1m = 100px
+		var field_value = e.charge / distance_squared;
 		field += field_value * diff.normalized();
 		
 	return field;
