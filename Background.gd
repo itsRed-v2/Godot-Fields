@@ -5,12 +5,14 @@ extends Node2D
 @export var gap = 100;
 
 func _draw():
-	var viewportSize = get_viewport().size;
-	var width = viewportSize.x;
-	var height = viewportSize.y;
+	var cameraView: Rect2 = $"../Camera".get_view_rect();
+	var startPos = floor(cameraView.position / gap) * gap;
+	var endPos = startPos + cameraView.size + Vector2(gap, gap);
 	
-	draw_rect(Rect2(Vector2.ZERO, viewportSize), bg);
-	for x in range(0, width, gap):
-		draw_line(Vector2(x, 0), Vector2(x, height), fg, -1);
-	for y in range(0, height, gap):
-		draw_line(Vector2(0, y), Vector2(width, y), fg, -1);
+	for x in range(startPos.x, endPos.x, gap):
+		draw_line(Vector2(x, startPos.y), Vector2(x, endPos.y), fg, -1);
+	for y in range(startPos.y, endPos.y, gap):
+		draw_line(Vector2(startPos.x, y), Vector2(endPos.x, y), fg, -1);
+
+func redraw():
+	queue_redraw();

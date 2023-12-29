@@ -19,15 +19,15 @@ func _on_area_2d_mouse_entered():
 
 func _on_area_2d_mouse_exited():
 	isHovered = false;
-	queue_redraw();	
+	queue_redraw();
 
 func _input(event):
 	if dragging && event is InputEventMouseMotion:
-		position += event.relative;
+		global_position = get_global_mouse_position();
 
 func _draw():
 	var color = Color(0.254902, 0.411765, 0.882353);
-	if isHovered: color = color.darkened(0.1);
+	if isHovered: color = color.darkened(0.2);
 	draw_circle(Vector2.ZERO, 20, color);
 
 func update_info():

@@ -1,21 +1,38 @@
 extends Node2D
 
-var arrowScene = preload("res://arrow.tscn");
+const arrowScene = preload("res://arrow.tscn");
+const vectors_distance = 100; # 1m = 100px
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _ready():
-	var viewportSize = get_viewport().size;
-	var container = get_node("ArrowContainer");
+	redraw_vectors();
+
+func _process(_delta):
+	update_vectors();
+
+func redraw_vectors():
+	var camera = $"../Camera";
+	var view_rect = camera.get_view_rect();
 	
-	for x in range(0, viewportSize.x, 100):
-		for y in range(0, viewportSize.y, 100):
+	var start = ceil(view_rect.position / vectors_distance) * vectors_distance;
+	var end = start + view_rect.size;
+
+	var container = $ArrowContainer;
+	
+	for node in container.get_children():
+		container.remove_child(node);
+		node.queue_free();
+	
+	for x in range(start.x, end.x, vectors_distance):
+		for y in range(start.y, end.y, vectors_distance):
 			var arrow = arrowScene.instantiate();
 			arrow.position = Vector2(x, y);
 			container.add_child(arrow);
-
-func _process(_delta):
-	var arrow_container = get_node("ArrowContainer");
 	
+	update_vectors();
+
+func update_vectors():
+	var arrow_container = get_node("ArrowContainer");
 	for arrow in arrow_container.get_children():
 		var field = calculate_field(arrow.position);
 		arrow.set_vector(field);
@@ -32,4 +49,3 @@ func calculate_field(point: Vector2) -> Vector2:
 		field += field_value * diff.normalized();
 		
 	return field;
-		
