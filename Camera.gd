@@ -1,5 +1,7 @@
 extends Camera2D
 
+signal view_rect_changed;
+
 const speed = 800;
 const moves = [
 	["up", Vector2.UP],
@@ -13,7 +15,7 @@ func _process(delta):
 	for move in moves:
 		if Input.is_action_pressed(move[0]):
 			movement += move[1];
-			redraw_everything();
+			view_rect_changed.emit();
 	position += movement * speed * delta;
 
 func get_view_rect():
@@ -23,9 +25,3 @@ func get_view_rect():
 	var realSize = Vector2(width, height);
 	
 	return Rect2(position, realSize);
-
-func redraw_everything():
-	$"../Background".redraw();
-	$"../ElectricField".redraw_vectors();
-
-

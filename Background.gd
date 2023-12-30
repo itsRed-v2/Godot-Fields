@@ -14,5 +14,5 @@ func _draw():
 	for y in range(startPos.y, endPos.y, gap):
 		draw_line(Vector2(startPos.x, y), Vector2(endPos.x, y), fg, -1);
 
-func redraw():
+func _on_camera_view_rect_changed():
 	queue_redraw();

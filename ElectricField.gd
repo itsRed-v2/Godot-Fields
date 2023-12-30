@@ -3,14 +3,13 @@ extends Node2D
 const arrowScene = preload("res://arrow.tscn");
 const vectors_distance = 100; # 1m = 100px
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _ready():
-	redraw_vectors();
+	recreate_vectors();
 
 func _process(_delta):
 	update_vectors();
 
-func redraw_vectors():
+func recreate_vectors():
 	var camera = $"../Camera";
 	var view_rect = camera.get_view_rect();
 	
@@ -38,10 +37,9 @@ func update_vectors():
 		arrow.set_vector(field);
 
 func calculate_field(point: Vector2) -> Vector2:
-	var entities = get_node("Entities");
+	var entities = $EntitiesContainer;
 	
 	var field = Vector2.ZERO;
-	
 	for e in entities.get_children():
 		var diff: Vector2 = e.position - point;
 		var distance_squared = diff.length_squared() / (100 * 100); # 1m = 100px
@@ -49,3 +47,6 @@ func calculate_field(point: Vector2) -> Vector2:
 		field += field_value * diff.normalized();
 		
 	return field;
+
+func _on_camera_view_rect_changed():
+	recreate_vectors();
