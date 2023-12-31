@@ -1,8 +1,12 @@
 extends Node
 
 signal selected_body_changed;
+signal draw_settings_changed;
 
-var draw_electrostatic_field = true;
+var draw_electrostatic_field = true:
+	set(new_value):
+		draw_electrostatic_field = new_value;
+		draw_settings_changed.emit();
 var show_charge = true;
 var show_mass = false;
 

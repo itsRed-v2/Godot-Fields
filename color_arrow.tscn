@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://1yloub4bc0w0"]
+
+[ext_resource type="Script" path="res://color_arrow.gd" id="1_m24el"]
+[ext_resource type="Texture2D" uid="uid://bu1otsc2pwk1w" path="res://vector_white.svg" id="1_n4s4j"]
+
+[node name="Arrow" type="Sprite2D"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_n4s4j")
+offset = Vector2(0, -75)
+script = ExtResource("1_m24el")

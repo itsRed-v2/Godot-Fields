@@ -15,8 +15,10 @@ func _process(delta):
 	for move in moves:
 		if Input.is_action_pressed(move[0]):
 			movement += move[1];
-			view_rect_changed.emit();
-	position += movement * speed * delta;
+	
+	if movement != Vector2.ZERO:
+		position += movement * speed * delta;
+		view_rect_changed.emit();
 
 func get_view_rect():
 	var viewPortSize = get_viewport().get_visible_rect().size;

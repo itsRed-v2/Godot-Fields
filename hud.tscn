@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://jpy61hi47b2"]
+[gd_scene load_steps=5 format=3 uid="uid://jpy61hi47b2"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_qx7ow"]
 [ext_resource type="Theme" uid="uid://c0l130h75grwb" path="res://main_theme.tres" id="2_ie6l2"]
 [ext_resource type="Script" path="res://BodyEditorGUI.gd" id="3_dipqy"]
+[ext_resource type="Script" path="res://FPS_label.gd" id="4_8wry5"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_qx7ow")
@@ -95,7 +96,9 @@ size_flags_horizontal = 3
 layout_mode = 2
 min_value = -100.0
 step = 0.1
+suffix = "C"
 custom_arrow_step = 1.0
+select_all_on_focus = true
 
 [node name="MassSection" type="HBoxContainer" parent="PanelContainer/MarginContainer/BoxContainer/BodyEditor/Inputs"]
 layout_mode = 2
@@ -110,6 +113,8 @@ size_flags_horizontal = 3
 
 [node name="SpinBox" type="SpinBox" parent="PanelContainer/MarginContainer/BoxContainer/BodyEditor/Inputs/MassSection"]
 layout_mode = 2
+suffix = "kg"
+select_all_on_focus = true
 
 [node name="DeleteButton" type="Button" parent="PanelContainer/MarginContainer/BoxContainer/BodyEditor/Inputs"]
 layout_mode = 2
@@ -118,6 +123,22 @@ theme_override_colors/font_pressed_color = Color(1, 0.301961, 0.301961, 1)
 theme_override_colors/font_hover_color = Color(1, 0.301961, 0.301961, 1)
 theme_override_colors/font_focus_color = Color(1, 0.301961, 0.301961, 1)
 text = "Remove Body"
+
+[node name="FpsIndicatorContainer" type="MarginContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -54.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+
+[node name="FPS" type="Label" parent="FpsIndicatorContainer"]
+layout_mode = 2
+theme = ExtResource("2_ie6l2")
+text = "FPS: --"
+script = ExtResource("4_8wry5")
 
 [connection signal="toggled" from="PanelContainer/MarginContainer/BoxContainer/ElecticFieldCheckBox" to="." method="_on_electic_field_check_box_toggled"]
 [connection signal="toggled" from="PanelContainer/MarginContainer/BoxContainer/ChargesCheckBox" to="." method="_on_charges_check_box_toggled"]

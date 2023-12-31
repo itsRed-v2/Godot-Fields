@@ -8,7 +8,6 @@ const selected_indicator_width = 3;
 	set(new_value):
 		charge = new_value;
 		update_info();
-		print("new value: ", new_value);
 		
 @export var mass = 1:
 	set(new_value):
