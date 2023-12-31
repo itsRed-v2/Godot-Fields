@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5c10lnak68xt"]
+
+[ext_resource type="PackedScene" uid="uid://bmnsl83705tel" path="res://background/background.tscn" id="1_04v0b"]
+[ext_resource type="Script" path="res://main/ElectricField.gd" id="2_2t0sg"]
+[ext_resource type="Script" path="res://main/EntitiesContainer.gd" id="3_11xhx"]
+[ext_resource type="PackedScene" uid="uid://c7rngejh3ce3i" path="res://spheric_body/spheric_body.tscn" id="4_d24q4"]
+[ext_resource type="PackedScene" uid="uid://jpy61hi47b2" path="res://hud/hud.tscn" id="5_hea3m"]
+[ext_resource type="Script" path="res://main/Camera.gd" id="6_suaa3"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Grid" parent="." instance=ExtResource("1_04v0b")]
+z_index = -1
+
+[node name="ElectricField" type="Node2D" parent="."]
+script = ExtResource("2_2t0sg")
+
+[node name="ArrowContainer" type="Node2D" parent="ElectricField"]
+
+[node name="EntitiesContainer" type="Node2D" parent="ElectricField" groups=["BodyCreator"]]
+script = ExtResource("3_11xhx")
+
+[node name="SphericBody" parent="ElectricField/EntitiesContainer" instance=ExtResource("4_d24q4")]
+position = Vector2(328, 114)
+charge = -1
+
+[node name="SphericBody2" parent="ElectricField/EntitiesContainer" instance=ExtResource("4_d24q4")]
+position = Vector2(968, 483)
+charge = 2
+
+[node name="HUD" parent="." instance=ExtResource("5_hea3m")]
+
+[node name="Camera" type="Camera2D" parent="."]
+anchor_mode = 0
+script = ExtResource("6_suaa3")
+
+[connection signal="view_rect_changed" from="Camera" to="Grid" method="_on_camera_view_rect_changed"]
+[connection signal="view_rect_changed" from="Camera" to="ElectricField" method="_on_camera_view_rect_changed"]

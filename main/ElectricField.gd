@@ -1,6 +1,6 @@
 extends Node2D
 
-const colorArrowScene = preload("res://color_arrow.tscn");
+const colorArrowScene = preload("res://color_arrow/color_arrow.tscn");
 const vectors_distance = 50; # 1m = 100px
 
 func _ready():

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://jpy61hi47b2"]
 
-[ext_resource type="Script" path="res://hud.gd" id="1_qx7ow"]
+[ext_resource type="Script" path="res://hud/hud.gd" id="1_qx7ow"]
 [ext_resource type="Theme" uid="uid://c0l130h75grwb" path="res://main_theme.tres" id="2_ie6l2"]
-[ext_resource type="Script" path="res://BodyEditorGUI.gd" id="3_dipqy"]
-[ext_resource type="Script" path="res://FPS_label.gd" id="4_8wry5"]
+[ext_resource type="Script" path="res://hud/BodyEditorGUI.gd" id="3_dipqy"]
+[ext_resource type="Script" path="res://hud/FPS_label.gd" id="4_8wry5"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_qx7ow")
