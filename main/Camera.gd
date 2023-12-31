@@ -2,23 +2,7 @@ extends Camera2D
 
 signal view_rect_changed;
 
-const speed = 800;
-const moves = [
-	["up", Vector2.UP],
-	["down", Vector2.DOWN],
-	["left", Vector2.LEFT],
-	["right", Vector2.RIGHT],
-];
-
-func _process(delta):
-	var movement = Vector2.ZERO;
-	for move in moves:
-		if Input.is_action_pressed(move[0]):
-			movement += move[1];
-	
-	if movement != Vector2.ZERO:
-		position += movement * speed * delta;
-		view_rect_changed.emit();
+var dragging = false;
 
 func get_view_rect():
 	var viewPortSize = get_viewport().get_visible_rect().size;
@@ -27,3 +11,20 @@ func get_view_rect():
 	var realSize = Vector2(width, height);
 	
 	return Rect2(position, realSize);
+
+func _unhandled_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			if event.pressed:
+				dragging = true;
+			else:
+				dragging = false;
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		if dragging:
+			move(-event.relative);
+
+func move(movement: Vector2):
+	position += movement;
+	view_rect_changed.emit();
