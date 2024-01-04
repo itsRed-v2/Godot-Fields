@@ -32,7 +32,7 @@ text = "Display
 
 [node name="ElecticFieldCheckBox" type="CheckBox" parent="PanelContainer/MarginContainer/BoxContainer"]
 layout_mode = 2
-text = "Electric field"
+text = "Electrostatic field"
 
 [node name="ChargesCheckBox" type="CheckBox" parent="PanelContainer/MarginContainer/BoxContainer"]
 layout_mode = 2
